@@ -4,17 +4,6 @@ app_publisher = "Hisham Qasrawii"
 app_description = "Qutell modification"
 app_email = "qasrawii86@gmail.com"
 app_license = "mit"
-fixtures = [
-    {"dt": "DocType", "filters": [["module", "=", "Qutell Modification"]]},
-    {"dt": "Custom Field", "filters": [["module", "=", "Qutell Modification"]]},
-    {"dt": "Client Script", "filters": [["module", "=", "Qutell Modification"]]},
-    {"dt": "Property Setter", "filters": [["module", "=", "Qutell Modification"]]},
-    {"dt": "Print Format", "filters": [["module", "=", "Qutell Modification"]]},
-    {"dt": "Report", "filters": [["module", "=", "Qutell Modification"]]},
-    {"dt": "Server Script", "filters": [["module", "=", "Qutell Modification"]]},
-    {"dt": "Workspace", "filters": [["module", "=", "Qutell Modification"]]},
-    {"dt": "Custom DocPerm", "filters": [["module", "=", "Qutell Modification"]]},
-]
 
 # Apps
 # ------------------
@@ -115,6 +104,7 @@ fixtures = [
 # To clean up dependencies/integrations with other apps
 # Name of the app being uninstalled is passed as an argument
 
+exit
 # before_app_uninstall = "qutell_modification.utils.before_app_uninstall"
 # after_app_uninstall = "qutell_modification.utils.after_app_uninstall"
 
