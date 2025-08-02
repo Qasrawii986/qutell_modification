@@ -13,7 +13,8 @@ def after_app_install(app_name):
 
     secho("Running after_app_install for Qutell Modification...", fg="green")
 
-    base_path = Path(frappe.get_app_path("qutell_modification")) / "qutell_modification" / "fixtures"
+    base_path = Path(frappe.get_app_path("qutell_modification")) / "fixtures"
+
 
     # 1️⃣ Load Custom Fields
     load_json_fixtures(base_path / "custom_field.json", "Custom Field")
