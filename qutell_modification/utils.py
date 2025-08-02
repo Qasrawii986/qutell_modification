@@ -1,11 +1,11 @@
 import frappe
+from click import secho
 from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 from frappe.custom.doctype.property_setter.property_setter import make_property_setter
-# from frappe.core.doctype.client_script.client_script import create_client_script
-# from frappe.core.doctype.print_format.print_format import create_print_format
 from frappe.modules.import_file import import_file_by_path
 from pathlib import Path
 import os
+
 
 def after_app_install(app_name):
     if app_name != "qutell_modification":
