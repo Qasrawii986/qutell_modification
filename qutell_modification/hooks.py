@@ -15,6 +15,7 @@ fixtures = [
     {"dt": "Workspace", "filters": [["module", "=", "Qutell Modification"]]},
     {"dt": "Custom DocPerm", "filters": [["module", "=", "Qutell Modification"]]},
 ]
+after_app_install = "qutell_modification.utils.after_app_install"
 
 # Apps
 # ------------------
