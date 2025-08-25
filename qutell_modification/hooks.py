@@ -4,6 +4,27 @@ app_publisher = "Hisham Qasrawii"
 app_description = "Qutell modification"
 app_email = "qasrawii86@gmail.com"
 app_license = "mit"
+# داخل hooks.py
+fixtures = [
+    # تخصيصات الفورم
+    {"dt": "Custom Field",     "filters": [["module", "=", "Qutell modification"]]},
+    {"dt": "Property Setter",  "filters": [["module", "=", "Qutell modification"]]},
+    # سكربتات
+    {"dt": "Client Script",    "filters": [["module", "=", "Qutell modification"]]},
+    {"dt": "Server Script",    "filters": [["module", "=", "Qutell modification"]]},
+    # تقارير ولوحات
+    {"dt": "Report",           "filters": [["module", "=", "Qutell modification"]]},
+    {"dt": "Workspace",        "filters": [["module", "=", "Qutell modification"]]},
+    {"dt": "Dashboard",        "filters": [["module", "=", "Qutell modification"]]},
+    {"dt": "Dashboard Chart",  "filters": [["module", "=", "Qutell modification"]]},
+    {"dt": "Number Card",      "filters": [["module", "=", "Qutell modification"]]},
+    # طباعات واشعارات 
+    {"dt": "Print Format",     "filters": [["module", "=", "Qutell modification"]]},
+    {"dt": "Notification",     "filters": [["module", "=", "Qutell modification"]]},
+    # في حال أنشأت DocTypes "مخصّصة" من الديسك بدون ملفات قياسية
+    {"dt": "DocType",          "filters": [["custom", "=", 1], ["module", "=", "Qutell modification"]]},
+]
+
 
 # Apps
 # ------------------

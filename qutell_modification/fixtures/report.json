@@ -1,0 +1,64 @@
+[
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": "test",
+  "modified": "2025-07-15 00:20:15.641769",
+  "module": "Qutell modification",
+  "name": "Project Budget",
+  "prepared_report": 0,
+  "query": "SELECT\r\n  pb.name AS 'Project Budget:Link/Project Budget:120',\r\n  pb.project_name AS 'Project Name:Data:180',\r\n  pt.task AS 'Task:Data:150',\r\n  pt.task_type AS 'Type:Data:100',\r\n  pt.cost_estimated AS 'Task Cost:Currency:120',\r\n  pt.qty AS 'Qty:Float:60',\r\n  pt.margin AS 'Margin:Percent:80',\r\n  pt.total_cost2 AS 'Total Cost:Currency:100'\r\nFROM\r\n  `tabProject Budget` pb\r\nJOIN\r\n  `tabProject Tasks` pt ON pt.parent = pb.name\r\nWHERE\r\n  pb.docstatus < 2\r\n",
+  "ref_doctype": "Project Budget",
+  "reference_report": null,
+  "report_name": "Project Budget",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "Project Budget",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   }
+  ],
+  "timeout": 0
+ },
+ {
+  "add_total_row": 0,
+  "columns": [],
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "Yes",
+  "javascript": null,
+  "json": null,
+  "letter_head": "test",
+  "modified": "2025-07-15 13:33:57.335814",
+  "module": "Qutell modification",
+  "name": "Project Budget Tasks Grouped",
+  "prepared_report": 1,
+  "query": null,
+  "ref_doctype": "Project Budget",
+  "reference_report": null,
+  "report_name": "Project Budget Tasks Grouped",
+  "report_script": "import frappe\r\n\r\ndef execute(filters=None):\r\n    columns = [\r\n        {\"label\": \"Lines\", \"fieldname\": \"lines\", \"fieldtype\": \"Data\", \"width\": 300},\r\n        {\"label\": \"Task Type\", \"fieldname\": \"task_type\", \"fieldtype\": \"Data\", \"width\": 150},\r\n        {\"label\": \"Cost\", \"fieldname\": \"cost\", \"fieldtype\": \"Currency\", \"width\": 120},\r\n        {\"label\": \"Qty\", \"fieldname\": \"qty\", \"fieldtype\": \"Float\", \"width\": 80},\r\n        {\"label\": \"Margin\", \"fieldname\": \"margin\", \"fieldtype\": \"Percent\", \"width\": 100},\r\n        {\"label\": \"Indent\", \"fieldname\": \"indent\", \"fieldtype\": \"Int\", \"hidden\": 1},\r\n    ]\r\n\r\n    data = []\r\n\r\n    project_budgets = frappe.get_all(\"Project Budget\", filters={\"docstatus\": [\"<\", 2]}, fields=[\"name\", \"project_name\"])\r\n\r\n    for pb in project_budgets:\r\n        # السطر الرئيسي = Project Budget\r\n        data.append({\r\n            \"lines\": f\"{pb.name} - {pb.project_name}\",\r\n            \"task_type\": \"\",\r\n            \"cost\": 0,\r\n            \"qty\": 0,\r\n            \"margin\": 0,\r\n            \"indent\": 0\r\n        })\r\n\r\n        task_types = frappe.db.get_all(\"Project Tasks\", filters={\"parent\": pb.name}, fields=[\"DISTINCT task_type\"])\r\n\r\n        for ttype in task_types:\r\n            tasks = frappe.get_all(\"Project Tasks\",\r\n                                   filters={\"parent\": pb.name, \"task_type\": ttype.task_type},\r\n                                   fields=[\"task\", \"cost_estimated\", \"qty\", \"margin\"])\r\n            \r\n            # السطر الثاني = Task Type\r\n            data.append({\r\n                \"lines\": f\"Type: {ttype.task_type}\",\r\n                \"task_type\": ttype.task_type,\r\n                \"indent\": 1\r\n            })\r\n\r\n            # المهام داخل هذا النوع\r\n            for task in tasks:\r\n                data.append({\r\n                    \"lines\": task.task,\r\n                    \"task_type\": ttype.task_type,\r\n                    \"cost\": task.cost_estimated,\r\n                    \"qty\": task.qty,\r\n                    \"margin\": task.margin,\r\n                    \"indent\": 2\r\n                })\r\n\r\n    return columns, data\r\n",
+  "report_type": "Script Report",
+  "roles": [
+   {
+    "parent": "Project Budget Tasks Grouped",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   }
+  ],
+  "timeout": 0
+ }
+]

@@ -1,0 +1,33 @@
+[
+ {
+  "absolute_value": 0,
+  "align_labels_right": 0,
+  "css": null,
+  "custom_format": 1,
+  "default_print_language": "en",
+  "disabled": 0,
+  "doc_type": "Project Budget",
+  "docstatus": 0,
+  "doctype": "Print Format",
+  "font": null,
+  "font_size": 14,
+  "format_data": null,
+  "html": "<style>\r\n    body {\r\n        font-family: 'Arial', sans-serif;\r\n        color: #000;\r\n        font-size: 12px;\r\n    }\r\n    .purple-header {\r\n        background-color: #d2c3e0;\r\n        padding: 8px;\r\n        font-weight: bold;\r\n        color: #000;\r\n    }\r\n    table {\r\n        width: 100%;\r\n        border-collapse: collapse;\r\n        margin-top: 15px;\r\n    }\r\n    th, td {\r\n        border: 1px solid #5d4b84;\r\n        padding: 6px 10px;\r\n    }\r\n    th {\r\n        background-color: #d2c3e0;\r\n        color: #000;\r\n    }\r\n    .signature-table td {\r\n        height: 35px;\r\n    }\r\n    .text-left { text-align: left; }\r\n    .text-right { text-align: right; }\r\n    .text-center { text-align: center; }\r\n</style>\r\n\r\n<h2>Scope of work</h2>\r\n\r\n<table>\r\n    <tr class=\"purple-header\">\r\n        <td colspan=\"2\">Commercial Register :</td>\r\n        <td colspan=\"2\">VAT :</td>\r\n        <td colspan=\"2\" class=\"text-right\">Quotatio : {{ doc.name }}</td>\r\n        <td colspan=\"2\" class=\"text-right\">Date : {{ doc.get_formatted(\"creation\") }}</td>\r\n    </tr>\r\n</table>\r\n\r\n<table>\r\n    <tr>\r\n        <td class=\"text-left\">Company Name:</td>\r\n        <td colspan=\"3\">{{ doc.client_name }}</td>\r\n        <td colspan=\"3\" class=\"text-right\">: الشركة</td>\r\n    </tr>\r\n    <tr>\r\n        <td class=\"text-left\">Attention:</td>\r\n        <td colspan=\"3\">{{ doc.attention_name }}</td>\r\n        <td colspan=\"3\" class=\"text-right\">: المسؤول</td>\r\n    </tr>\r\n    <tr>\r\n        <td class=\"text-left\">Project name:</td>\r\n        <td colspan=\"3\">{{ doc.project_name }}</td>\r\n        <td colspan=\"3\" class=\"text-right\">: اسم المشروع</td>\r\n    </tr>\r\n    <tr>\r\n        <td class=\"text-left\">Project Date:</td>\r\n        <td colspan=\"3\">{{ doc.get_formatted(\"project_date\") }}</td>\r\n        <td colspan=\"3\" class=\"text-right\">: تاريخ المشروع</td>\r\n    </tr>\r\n    <tr>\r\n        <td class=\"text-left\">Location:</td>\r\n        <td colspan=\"3\">{{ doc.location }}</td>\r\n        <td colspan=\"3\" class=\"text-right\">: الموقع</td>\r\n    </tr>\r\n</table>\r\n\r\n<table>\r\n    <thead>\r\n        <tr>\r\n            <th style=\"width: 5%;\">#</th>\r\n            <th style=\"width: 45%;\">DESCRIPTION</th>\r\n            <th style=\"width: 15%;\">Quantity</th>\r\n            <th style=\"width: 15%;\">Days</th>\r\n            <th style=\"width: 20%;\">Amount</th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        {% for row in doc.project_tasks %}\r\n        <tr>\r\n            <td>{{ loop.index }}</td>\r\n            <td>{{ row.task_type }}</td>\r\n            <td class=\"text-center\">{{ row.qty }}</td>\r\n            <td class=\"text-center\">{{ row.days }}</td>\r\n            <td class=\"text-right\">{{ row.total_sales  }}</td>\r\n        </tr>\r\n        {% endfor %}\r\n    </tbody>\r\n</table>\r\n\r\n<table class=\"signature-table\">\r\n    <tr><td colspan=\"6\" class=\"purple-header\"></td></tr>\r\n    <tr>\r\n        <td>Name:</td><td></td>\r\n        <td>Position:</td><td></td>\r\n        <td>Date:</td><td></td>\r\n    </tr>\r\n    <tr>\r\n        <td>Signatur:</td><td></td>\r\n        <td>Stamp</td><td colspan=\"3\"></td>\r\n    </tr>\r\n</table>\r\n",
+  "line_breaks": 0,
+  "margin_bottom": 15.0,
+  "margin_left": 15.0,
+  "margin_right": 15.0,
+  "margin_top": 15.0,
+  "modified": "2025-07-18 01:41:34.921765",
+  "module": "Qutell modification",
+  "name": "Scope of work",
+  "page_number": "Hide",
+  "print_format_builder": 0,
+  "print_format_builder_beta": 0,
+  "print_format_type": "Jinja",
+  "raw_commands": null,
+  "raw_printing": 0,
+  "show_section_headings": 0,
+  "standard": "No"
+ }
+]
